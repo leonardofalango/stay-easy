@@ -10,22 +10,17 @@ class UserService
         try {
             //? encrypting the data with aes
             const host = 'http://localhost:8080/user'
-    
-            const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
-            
-            try{
-                const res = await axios.post(host + "/login", { data: aesData })
-                sessionStorage.setItem("token", res.data.token)
-                navigation.navigate('main')
 
-            } catch (error) {
-                console.log(error)
-            }
+            const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
+            const res = await axios.post(host + "/login", { data: aesData })
+            sessionStorage.setItem("token", res.data.token)
             
+            console.log(res)
+
             return {
                 status: res.status,
-                data: res
-            }
+                data: res.data
+            }            
 
         } catch (e) {
             return {
@@ -57,6 +52,18 @@ class UserService
             }
         }
         
+    }
+
+    static verifyToken = async (token) => {
+        try {
+
+            const host = 'http://localhost:8080/user'
+
+            const res = await axios.post
+
+        } catch (e) {
+            console.log(e.message)
+        }
     }
 }
 

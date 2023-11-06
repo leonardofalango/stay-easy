@@ -1,9 +1,9 @@
 import { Button, View, StyleSheet, TextInput, Image, TouchableOpacity, Text, ImageBackground } from 'react-native';
 const { UserService } = require('../services/userService')
-const background = require('../assets/background.png');
+const logo = require('../assets/completedLogo.png');
 const facebook = require('../assets/facebook.png');
 const google = require('../assets/google.png');
-const logo = require('../assets/logo.png');
+const background = require('../assets/background.png');
 import { useState } from 'react';
 
 
@@ -22,8 +22,12 @@ export default function Login({ navigation }) {
             
             const response = await UserService.login(data);
             
-            console.log(response)
-            // setPass("");
+            if (response.status == 200)
+            {
+                setPass("");
+                sessionStorage.setItem('jwt', response.data.token);
+                navigation.navigate("main")
+            }
         } catch (e) {
             console.error("Error!")
             console.error(e.message)

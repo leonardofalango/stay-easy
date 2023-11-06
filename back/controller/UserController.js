@@ -181,6 +181,10 @@ class UserController
         }
 
     }
+
+    static verifyToken = async (req, res) => {
+        
+    }
 }
 
 module.exports = UserController

@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
-import Login from './components/Login';
-import Cadastro from './components/Cadastro';
-import MainPage from './components/MainPage';
+import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
+import MainPage from './pages/MainPage';
 import './global.css';
 
 export default function App() {

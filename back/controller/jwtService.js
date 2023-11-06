@@ -10,8 +10,6 @@ class Jwt {
             process.env.JWT_SECRET
         );
 
-        console.log(token)
-
         return token
     }
 
