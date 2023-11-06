@@ -14,15 +14,16 @@ export default function Login({ navigation }) {
     const login = async () => {
         try {
             const data = {
-                email : email,
+                name : email,
                 password : pass
             }
 
-            setPass("");
 
+            
             const response = await UserService.login(data);
-
+            
             console.log(response)
+            // setPass("");
         } catch (e) {
             console.error("Error!")
             console.error(e.message)

@@ -1,5 +1,5 @@
 const User = require("../model/User")
-const { Jwt } = require("./jwtService")
+const Jwt = require("./jwtService")
 const crypto = require("crypto-js")
 
 class UserController
@@ -37,12 +37,10 @@ class UserController
                 email,
                 password : crypto.MD5(password),
                 birthday,
-                status : 1,
+                status,
                 cpf
             }
             
-            console.log(user)
-
             const response = await User.create(user)
 
             return res.status(200).send({
@@ -127,23 +125,28 @@ class UserController
     static login = async (req, res) => { 
         try {
             const {
-                username,
-                password
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+                name,
+                password 
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
+            
             const user = await User.findOne({
-                username : username,
-                password : password
+                email : name,
+                password : crypto.MD5(password)
             })
+
+            const jwt = await Jwt.create(user)
 
             if (user)
                 return res.status(200).send({
                     message : "Guti!",
                     data : user,
-                    token : await Jwt.create(user)
+                    token : jwt
                 })
 
         } catch (e) {
+            console.log(e.message)
+
             res.status(500).send({
                 message : "Error",
                 debug : e.message

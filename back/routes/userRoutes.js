@@ -8,6 +8,7 @@ router
     .post("/add", UserController.add)
     .post("/update", UserController.update)
     .post("/delete", UserController.delete)
+    .post("/login", UserController.login)
 
 
 module.exports = router

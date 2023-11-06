@@ -24,21 +24,27 @@ export default function Cadastro({ navigation }) {
                 name : name,
                 password : password,
                 birthday : birthdate,
-                cpf : cpf
+                cpf : cpf,
+                status : isChecked
             }
 
 
-            setUsername("")
-            setName("")
-            setBirthdate("")
-            setCpf("")
-            setPassword("")
-            setConfirmPassword("")
+            
 
             const response = await UserService.create(newUser)
 
             console.log(response)
-
+            if (response.status == 200)
+            {
+                setUsername("")
+                setName("")
+                setBirthdate("")
+                setCpf("")
+                setPassword("")
+                setConfirmPassword("")
+                navigation.navigate("login")
+            }
+            
         } catch (e) {
             console.log("Error")
             console.log(e.message)

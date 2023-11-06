@@ -1,11 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 class Jwt {
-    static create = (data) => {
-        return jwt.sign(data, process.env.JWT_SECRET);
+    static create = async (data) => {
+        const token = jwt.sign(
+            {
+                exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                data: JSON.stringify(data)
+            },
+            process.env.JWT_SECRET
+        );
+
+        console.log(token)
+
+        return token
     }
 
-    static verify = (token) => {
+    static verify = async (token) => {
         return jwt.verify(token, process.env.JWT_SECRET);
     }
 }
