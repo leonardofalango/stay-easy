@@ -248,4 +248,155 @@ class HotelController {
             })
         }
     }
+
+    static search = async (req, res) => {
+        try {
+            const {
+                name,
+                address,
+                rooms,
+                price,
+                description,
+                images,
+                rating,
+                reviews,
+                amenities,
+                services,
+                rules,
+                checkin,
+                checkout,
+                cancellation,
+                payment,
+                contact,
+                owner,
+                status,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+        
+            const hotel = {
+                name,
+                address,
+                rooms,
+                price,
+                description,
+                images,
+                rating,
+                reviews,
+                amenities,
+                services,
+                rules,
+                checkin,
+                checkout,
+                cancellation,
+                payment,
+                contact,
+                owner,
+                status
+            }
+
+            const data = await Hotel.find(hotel)
+
+            return res.status(200).send({
+                message : "Hotel found!",
+                data : data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    }
+
+
+    static searchByPrice = async (req, res) => {
+        try {
+            const {
+                price,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+        
+            const data = await Hotel.find({price: {$lte: price}})
+
+            return res.status(200).send({
+                message : "Hotel found!",
+                data : data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    }
+
+
+    static searchByStatus = async (req, res) => {
+        try {
+            const {
+                status,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+        
+            const data = await Hotel.find({status: status})
+
+            return res.status(200).send({
+                message : "Hotel found!",
+                data : data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    
+    }
+
+    static searchByRating = async (req, res) => {
+        try {
+            const {
+                rating,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+        
+            const data = await Hotel.find({rating: {$gte: rating}})
+
+            return res.status(200).send({
+                message : "Hotel found!",
+                data : data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    }
+
+
 }
