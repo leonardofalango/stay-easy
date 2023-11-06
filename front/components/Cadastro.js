@@ -1,10 +1,55 @@
 import { useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import { CheckBox } from 'react-native-elements'
+import { UserService } from '../services/userService'
 const background = require('../assets/background.png');
+import { View, StyleSheet, TextInput, TouchableOpacity, Text, ImageBackground } from 'react-native';
 
 export default function Cadastro({ navigation }) {
     const [isChecked, setIsChecked] = useState(true);
+    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
+    const [birthdate, setBirthdate] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const register = async () => {
+        try {
+
+            if (!verifyPasswords())
+                return
+
+            const newUser = {
+                email : username,
+                name : name,
+                password : password,
+                birthday : birthdate,
+                cpf : cpf
+            }
+
+
+            setUsername("")
+            setName("")
+            setBirthdate("")
+            setCpf("")
+            setPassword("")
+            setConfirmPassword("")
+
+            const response = await UserService.create(newUser)
+
+            console.log(response)
+
+        } catch (e) {
+            console.log("Error")
+            console.log(e.message)
+        }
+    }
+
+    const verifyPasswords = () => {
+        return true
+        if (password != confirmPassword)
+            return false
+    }
 
     return (
         <View style={styles.container}>
@@ -15,36 +60,45 @@ export default function Cadastro({ navigation }) {
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
+                            onChange={ (e) => setUsername(e.target.value) }
+                            value={ username }
                             placeholder='Email or username'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            secureTextEntry
+                            onChange={ (e) => setName(e.target.value) }
+                            value={ name }
                             placeholder='Name'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            secureTextEntry
+                            onChange={ (e) => setCpf(e.target.value) }
+                            value={ cpf }
                             placeholder='CPF'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            secureTextEntry
+                            onChange={ (e) => setBirthdate(e.target.value) }
+                            value={ birthdate }
                             placeholder='Birthdate'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
                             secureTextEntry
+                            onChange={ (e) => setPassword(e.target.value) }
+                            value={ password }
                             placeholder='Password'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
                             secureTextEntry
+                            onChange={ (e) => setConfirmPassword(e.target.value) }
+                            value={ confirmPassword }
                             placeholder='Confirm Password'
                         />
                         <View style={{
@@ -73,7 +127,7 @@ export default function Cadastro({ navigation }) {
 
                     <TouchableOpacity
                         style={styles.btnContainer}
-                        onPress={() => navigation.navigate("main")}
+                        onPress={ register }
                     >
                         <Text 
                             style={{

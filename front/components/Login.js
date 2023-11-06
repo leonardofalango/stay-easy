@@ -25,6 +25,7 @@ export default function Login({ navigation }) {
             console.log(response)
         } catch (e) {
             console.error("Error!")
+            console.error(e.message)
         }
     }
 

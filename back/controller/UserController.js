@@ -31,15 +31,17 @@ class UserController
                 cpf
             } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-        
+            
             const user = {
                 name,
                 email,
                 password : crypto.MD5(password),
                 birthday,
-                status,
+                status : 1,
                 cpf
             }
+            
+            console.log(user)
 
             const response = await User.create(user)
 

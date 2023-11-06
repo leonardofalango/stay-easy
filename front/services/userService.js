@@ -14,7 +14,7 @@ class UserService
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
             
             
-            const res = await axios.post(host + "/login", aesData)
+            const res = await axios.post(host + "/login", { data: aesData })
             
             return {
                 status: res.status,
@@ -37,7 +37,7 @@ class UserService
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
             
             
-            const res = await axios.post(host + "/add", aesData)
+            const res = await axios.post(host + "/add", { data : aesData })
             
             return {
                 status: res.status,
