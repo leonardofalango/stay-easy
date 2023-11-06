@@ -8,7 +8,7 @@ router
     .post("/add", HotelController.add)
     .post("/update", HotelController.update)
     .post("/delete", HotelController.delete)
-    .post("/search", HotelController.search)
+    .post("/search", HotelController.search) // falta esse
     .post("/getById", HotelController.getById)
     .post("/searchByOwner", HotelController.searchByOwner)
     .post("/searchByStatus", HotelController.searchByStatus)

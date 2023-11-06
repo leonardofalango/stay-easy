@@ -13,8 +13,14 @@ class UserService
     
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
             
-            
-            const res = await axios.post(host + "/login", { data: aesData })
+            try{
+                const res = await axios.post(host + "/login", { data: aesData })
+                sessionStorage.setItem("token", res.data.token)
+                navigation.navigate('main')
+
+            } catch (error) {
+                console.log(error)
+            }
             
             return {
                 status: res.status,
