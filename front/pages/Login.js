@@ -93,7 +93,7 @@ export default function Login({ navigation }) {
                                 fontSize: '1rem',
                                 display: 'flex',
                                 gap: '4px',
-                                color: '#363636',
+                                color: '#aaa',
                                 marginTop: '3rem'}}
                         >
                             Doesn`t have an account?
@@ -104,7 +104,7 @@ export default function Login({ navigation }) {
                                     fontWeight: '600', 
                                     fontSize: '1rem',
                                     textDecorationLine: '',
-                                    color: 'black'}}
+                                    color: '#eee'}}
                             >
                                 Register
                             </Text>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: '0',
         width: '100vw',
         height: '75vh',
-        backgroundColor: '#E8E8E8'
+        backgroundColor: '#222'
 
     },
     logo: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: "100%",
-        backgroundColor: "#242424",
+        backgroundColor: "#191919",
         color: "#fff",
         fontFamily: 'Poppins',
         height: '4rem',
