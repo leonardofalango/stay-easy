@@ -123,20 +123,20 @@ class UserController
     }
 
     static login = async (req, res) => { 
+        console.log(req.data)
         try {
             const {
                 name,
                 password 
             } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            
             const user = await User.findOne({
                 email : name,
                 password : crypto.MD5(password)
             })
-
+            
+            console.log(user)
             const jwt = await Jwt.create(user)
-
             if (user)
                 return res.status(200).send({
                     message : "Guti!",
@@ -145,7 +145,7 @@ class UserController
                 })
 
         } catch (e) {
-            console.log(e.message)
+            
 
             res.status(500).send({
                 message : "Error",

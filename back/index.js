@@ -9,5 +9,5 @@ app.use(cors())
 app.use(express.json())
 routes(app)
 
-const port = process.env.PORT
+const port = 8080
 app.listen(port, () => console.log(`🚀🚀🚀 http://localhost:${port}`))

@@ -17,8 +17,6 @@ export default function Login({ navigation }) {
                 name : email,
                 password : pass
             }
-
-
             
             const response = await UserService.login(data);
             

@@ -4,11 +4,11 @@ const UserController = require("../controller/UserController")
 
 
 router
-    .get("/", UserController.getAll)
-    .post("/add", UserController.add)
-    .post("/update", UserController.update)
-    .post("/delete", UserController.delete)
-    .post("/login", UserController.login)
+    .get("/user", UserController.getAll)
+    .post("/user/add", UserController.add)
+    .post("/user/update", UserController.update)
+    .post("/user/delete", UserController.delete)
+    .post("/user/login", UserController.login)
 
 
 module.exports = router

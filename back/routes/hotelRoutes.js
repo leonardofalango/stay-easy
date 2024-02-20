@@ -1,19 +1,17 @@
 const express = require('express')
-const router = express.Router()
 const HotelController = require("../controller/HotelController")
 
 
+const router = express.Router()
 router
-    .get("/", HotelController.getAll)
-    .post("/add", HotelController.add)
-    .post("/update", HotelController.update)
-    .post("/delete", HotelController.delete)
-    .post("/search", HotelController.search) // falta esse
-    .post("/getById", HotelController.getById)
-    .post("/searchByOwner", HotelController.searchByOwner)
-    .post("/searchByStatus", HotelController.searchByStatus)
-    .post("/searchByPrice", HotelController.searchByPrice)
-    .post("/searchByRating", HotelController.searchByRating)
+    .get("/hotel", HotelController.getAll)
+    .post("/hotel/add", HotelController.add)
+    .post("/hotel/update", HotelController.update)
+    .post("/hotel/delete", HotelController.delete)
+    .post("/hotel/searchByOwner", HotelController.searchByOwner)
+    .post("/hotel/searchByStatus", HotelController.searchByStatus)
+    .post("/hotel/searchByPrice", HotelController.searchByPrice)
+    .post("/hotel/searchByRating", HotelController.searchByRating)
     
 
 
