@@ -1,10 +1,19 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import TopBar from "../components/TopBar";
 
 export default function OfferDetails({ route, navigation }) {
     const id = route.params;
     return (
-        <View>
-            {id}
+        <View style={styles.container}>
+            <TopBar />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#222222',
+        width: '100vw',
+        minHeight: '100vh'
+    }
+})
