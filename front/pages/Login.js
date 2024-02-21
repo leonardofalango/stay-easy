@@ -5,11 +5,14 @@ const facebook = require('../assets/facebook.png');
 const google = require('../assets/google.png');
 const background = require('../assets/background.png');
 import { useState } from 'react';
+import ErrorComponent from '../components/ErrorComponent';
 
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
+
+    const [error, setError] = useState({error: false, message: ''});
 
     const login = async () => {
         try {
@@ -17,16 +20,22 @@ export default function Login({ navigation }) {
                 name : email,
                 password : pass
             }
-
-
             
             const response = await UserService.login(data);
-            
-            if (response.status == 200)
+            switch (response.status)
             {
-                setPass("");
-                sessionStorage.setItem('jwt', response.data.token);
-                navigation.navigate("main")
+                case 200:
+                    setPass("");
+                    sessionStorage.setItem('jwt', response.data.token);
+                    navigation.navigate("main");
+                    break;
+                case 400:
+                    setError({error: true, message: 'Usuário ou senha incorretos.'})
+                    break;
+                case 500:
+                    setError({error: true, message: 'Erro interno.'})
+                    break;
+
             }
         } catch (e) {
             console.error("Error!")
@@ -47,7 +56,7 @@ export default function Login({ navigation }) {
                             style={styles.input}
                             placeholderTextColor="#fff" 
                             placeholder='Email or username'
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => { setEmail(e.target.value); setError({ error: false, message: '' }) }}
                             value={email}
                         />
                         <TextInput 
@@ -55,14 +64,14 @@ export default function Login({ navigation }) {
                             placeholderTextColor="#fff" 
                             secureTextEntry
                             placeholder='Password'
-                            onChange={(e) => setPass(e.target.value)}
+                            onChange={(e) => { setPass(e.target.value); setError({ error: false, message: '' }) }}
                             value={pass}
                         />
                     </View>
-
+                    <ErrorComponent error={error.error} message={error.message} />
                     <TouchableOpacity
                         style={styles.btnContainer}
-                        onPress={login}
+                        onPress={() => login()}
                     >
                         <Text 
                             style={{
