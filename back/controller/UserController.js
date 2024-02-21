@@ -129,7 +129,6 @@ class UserController
                 password 
             } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            
             const user = await User.findOne({
                 email : name,
                 password : crypto.MD5(password)
@@ -143,11 +142,15 @@ class UserController
                     data : user,
                     token : jwt
                 })
+            else
+                return res.status(400).send({
+                    message: 'Usuário ou senha inválidos'
+                })
 
         } catch (e) {
             console.log(e.message)
 
-            res.status(500).send({
+            return res.status(500).send({
                 message : "Error",
                 debug : e.message
             })

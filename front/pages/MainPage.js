@@ -18,6 +18,7 @@ export default function MainPage({ navigation }) {
     useEffect(() => {
         verifyLogin();
     }, [])
+    
     return (
         <View style={styles.container}>
             <SearchBox />
