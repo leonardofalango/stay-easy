@@ -6,39 +6,33 @@ import axios from 'axios'
 
 class UserService
 {
+    static host = 'http://localhost:8080/user';
+
     static login = async (data) => {
         try {
-            //? encrypting the data with aes
-            const host = 'http://localhost:8080/user'
-
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
-            const res = await axios.post(host + "/login", { data: aesData })
-            sessionStorage.setItem("token", res.data.token)
+
+            const response = await axios.post(this.host + "/login", { data: aesData })
+                .then((res) => {
+                    sessionStorage.setItem("token", res.data.token)
+                    return { status: res.status, data: res.data.data }
+                })
+                .catch((err) => { return { status: err.response.status } });
             
-            console.log(res)
-
-            return {
-                status: res.status,
-                data: res.data
-            }            
-
+            return response;
         } catch (e) {
-            return {
-                status: e.response.status,
-                data: e.message
-            }
+            console.log(e);
         }
     }
 
     static create = async (data) => {
         try {
             //? encrypting the data with aes
-            const host = 'http://localhost:8080/user'
     
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
             
             
-            const res = await axios.post(host + "/add", { data : aesData })
+            const res = await axios.post(this.host + "/add", { data : aesData })
             
             return {
                 status: res.status,
@@ -54,17 +48,14 @@ class UserService
         
     }
 
-    static verifyToken = async (token) => {
-        try {
+    // static verifyToken = async (token) => {
+    //     try {
+    //         const res = await axios.post
 
-            const host = 'http://localhost:8080/user'
-
-            const res = await axios.post
-
-        } catch (e) {
-            console.log(e.message)
-        }
-    }
+    //     } catch (e) {
+    //         console.log(e.message)-----------------------------------------------------------------------------------------------------------------------------------
+    //     }
+    // }
 }
 
 export { UserService }

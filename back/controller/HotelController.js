@@ -1,4 +1,4 @@
-const { Jwt } = require("./jwtService")
+const { Jwt } = require("../services/jwtService")
 const Hotel = require("../model/Hotel")
 const crypto = require("crypto-js")
 
