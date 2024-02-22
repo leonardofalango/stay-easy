@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
+import TopBar from './TopBar';
 
 export default function OptionsModal({ modalOptionsVisible, toggleOptions }) {
     
@@ -16,10 +17,7 @@ export default function OptionsModal({ modalOptionsVisible, toggleOptions }) {
     >
 
         <View style={styles.modalView}>
-            <TouchableOpacity style={styles.buttonClose} onPress={() => toggleOptions()}>mim fechar</TouchableOpacity>
-            <View style={styles.browsers}>
-
-            </View>
+            <TopBar btnFunc={() => toggleOptions()} pageName={'Configuration'}/>
             <View style={styles.cardProfile}>
 
             </View>
