@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
     birthday: { type: Date, required: false },
     status: { type: Boolean, required: false , default: 1 },
     cpf: { type: String, required: true },
+    verified: { type: Boolean, required: false , default: 0 },
     // veiculo:{type: mongoose.Schema.Types.ObjectId,ref: 'Veiculo',required: true,}
     // referenciar outra coleção do mongo
 }, { timestamps: {} });
