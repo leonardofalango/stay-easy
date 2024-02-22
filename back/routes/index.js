@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const userRoutes = require('./userRoutes')
+const mailRoutes = require('./mailRoutes')
 
 module.exports = (app) => {
     app.use(
@@ -7,4 +8,6 @@ module.exports = (app) => {
     )
 
     app.use("/user", userRoutes)
+
+    app.use("/mail", mailRoutes)
 }
