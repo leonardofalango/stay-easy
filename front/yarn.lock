@@ -7580,6 +7580,11 @@
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
 
+"react-native-imaged-carousel-card@^0.1.1":
+  "integrity" "sha512-EbPGQslisB2FJVW7TfEQnUda8QcCmB+dy1InQ63eiU1UYiuB1hWwc17pSkcmzitCeWksm9Fh/1G/7XYP+HFeVQ=="
+  "resolved" "https://registry.npmjs.org/react-native-imaged-carousel-card/-/react-native-imaged-carousel-card-0.1.1.tgz"
+  "version" "0.1.1"
+
 "react-native-navigation@^7.37.1":
   "integrity" "sha512-3LM5tawVwfo8iNwH+caAt2jI+9lGVIeXKv9jmRp7esXz3DEypi8yfKBVjz/IDsCo6VBjAwocw1f2EuIXxRyiuA=="
   "resolved" "https://registry.npmjs.org/react-native-navigation/-/react-native-navigation-7.37.1.tgz"
@@ -7638,7 +7643,7 @@
     "postcss-value-parser" "^4.2.0"
     "styleq" "^0.1.3"
 
-"react-native@*", "react-native@^0.72.6", "react-native@>=0.57":
+"react-native@*", "react-native@^0.72.6", "react-native@>= 0.55.x", "react-native@>=0.57":
   "integrity" "sha512-RafPY2gM7mcrFySS8TL8x+TIO3q7oAlHpzEmC7Im6pmXni6n1AuufGaVh0Narbr1daxstw7yW7T9BKW5dpVc2A=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.72.6.tgz"
   "version" "0.72.6"
@@ -7698,7 +7703,7 @@
     "object-assign" "^4.1.1"
     "react-is" "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>=16", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16.x.x", "react@>=16", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
