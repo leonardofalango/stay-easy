@@ -4,14 +4,12 @@ const menuIcon = require('../assets/icons/menuIcon.png');
 const searchIcon = require('../assets/icons/searchIcon.png');
 
 
-export default function SearchBox({ setIsOptionsActive }) {
-    const handleOptionsClick = () => {
-        setIsOptionsActive(true);
-      }
+export default function SearchBox({ toggleOptions }) {
+  
 
     return (
         <View style={styles.searchBox}>
-            <TouchableOpacity onPress={handleOptionsClick} style={styles.searchBtns}><Image source={menuIcon} style={{ width: '40%', height: '40%', resizeMode: 'contain' }} /></TouchableOpacity>
+            <TouchableOpacity onPress={() =>  toggleOptions() }style={styles.searchBtns}><Image source={menuIcon} style={{ width: '40%', height: '40%', resizeMode: 'contain' }} /></TouchableOpacity>
             <TextInput
                 style={styles.searchInput}
                 placeholder='Find a place to go'

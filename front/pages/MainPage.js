@@ -9,6 +9,7 @@ const searchIcon = require('../assets/icons/searchIcon.png');
 
 export default function MainPage({ navigation }) {
     const [isOptionsActive, setIsOptionsActive] = useState(false);
+    const toggleOptions = () => setIsOptionsActive(!isOptionsActive)
 
     const verifyLogin = () => {
         const jwt = sessionStorage.getItem('jwt');
@@ -23,10 +24,10 @@ export default function MainPage({ navigation }) {
     }, [])
     return (
         <View style={styles.container}>
-            <SearchBox setIsOptionsActive={setIsOptionsActive} />
+            <SearchBox toggleOptions={toggleOptions} />
             <Filter />
             <Cards />
-            <OptionsModal modalOptionsVisible={isOptionsActive}/>
+            <OptionsModal modalOptionsVisible={isOptionsActive} toggleOptions={toggleOptions}/>
         </View>
         
     )
