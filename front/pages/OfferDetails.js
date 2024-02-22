@@ -5,7 +5,7 @@ export default function OfferDetails({ route, navigation }) {
     const id = route.params;
     return (
         <View style={styles.container}>
-            <TopBar />
+            <TopBar btnFunc={() => navigation.navigate("main")} pageName={"Details"} />
         </View>
     )
 }
