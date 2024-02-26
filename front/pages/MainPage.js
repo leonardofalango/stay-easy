@@ -3,14 +3,13 @@ import { View, StyleSheet, TextInput, TouchableOpacity, Touchable, Text, ImageBa
 import Cards from '../components/Cards';
 import Filter from '../components/Filter';
 import SearchBox from '../components/SearchBox';
-const menuIcon = require('../assets/icons/menuIcon.png');
-const searchIcon = require('../assets/icons/searchIcon.png');
+import { useSelector } from "react-redux";
 
 export default function MainPage({ navigation }) {
-    const verifyLogin = () => {
-        const jwt = sessionStorage.getItem('jwt');
+    const { token } = useSelector((store) => store.user);
 
-        if(jwt == null) {
+    const verifyLogin = () => {
+        if(token == null) {
             navigation.navigate('login');
         }
     }

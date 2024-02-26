@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import ImageCarousel from "../components/ImageCarousel";
-import TopBar from "../components/TopBar";
+import TopBar from "../../components/TopBar";
+import HotelDetails from "./components/HotelDetails";
+import ImageCarousel from "./components/ImageCarousel/ImageCarousel";
 
 export default function OfferDetails({ route, navigation }) {
     const id = route.params;
@@ -14,6 +15,9 @@ export default function OfferDetails({ route, navigation }) {
         <View style={styles.container}>
             <TopBar btnFunc={() => navigation.navigate("main")} pageName={"Details"} />
             <ImageCarousel images={images} />
+            <View style={styles.content}>
+                <HotelDetails />
+            </View>
         </View>
     )
 }
@@ -21,7 +25,12 @@ export default function OfferDetails({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#222222',
-        width: '100vw',
-        minHeight: '100vh',
-    }
+        width: '100%',
+        minHeight: '100%',
+    },
+    content: {
+        marginTop: 42,
+        marginHorizontal: 16,
+        width: 'calc(100% - 32)'
+    },
 })
