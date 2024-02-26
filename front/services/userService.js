@@ -5,6 +5,33 @@ import axios from 'axios'
 
 class UserService
 {
+
+    static loginFacebook = async () => {
+        try {
+            const host = 'http://localhost:8080';
+    
+            // Simplificação da configuração de Axios
+            const res = await axios.get(`${host}/auth/facebook`, {
+                withCredentials: true // Se necessário para manter sessões baseadas em cookies
+            }).then(response => {
+                console.log(response);
+                return response; // Retornando a resposta para uso fora do .then
+            }).catch(error => {
+                console.error(error);
+                throw error; // Lançando erro para ser capturado pelo catch externo
+            });
+    
+            return {
+                status: res.status,
+                data: res.data
+            };
+        } catch (e) {
+            return {
+                status: e.response ? e.response.status : 500, // Checando se e.response existe
+                data: e.message
+            };
+        }
+    };
     static login = async (data) => {
         try {
             //? encrypting the data with aes

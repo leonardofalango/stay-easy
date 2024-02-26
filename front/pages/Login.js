@@ -11,6 +11,16 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
+    const loginFacebook = async () => {
+
+        const response = await UserService.loginFacebook();
+        if (response.status == 200)
+        {
+            sessionStorage.setItem('jwt', response.data.token);
+            navigation.navigate("main")
+        }
+    }
+
     const login = async () => {
         try {
             const data = {
@@ -77,10 +87,14 @@ export default function Login({ navigation }) {
                             style={styles.logs}
                             source={google}
                         />
-                        <Image
-                            style={styles.logs}
-                            source={facebook}
-                        />
+                        <TouchableOpacity
+                            onPress={loginFacebook}
+                        >
+                            <Image
+                                style={styles.logs}
+                                source={facebook}
+                            />
+                        </TouchableOpacity>
                     </View>
                         
                     <View>
