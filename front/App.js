@@ -6,6 +6,7 @@ import Cadastro from './pages/Cadastro';
 import MainPage from './pages/MainPage';
 import './global.css';
 import OfferDetails from './pages/OfferDetails';
+import EditProfile from './pages/EditProfile';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen options={{headerShown: false}} name="login" component={Login} />
         <Stack.Screen options={{headerShown: false}} name="offer" component={OfferDetails} />
         <Stack.Screen options={{headerShown: false}} name="cadastro" component={Cadastro} />
+        <Stack.Screen options={{headerShown: false}} name="editprofile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

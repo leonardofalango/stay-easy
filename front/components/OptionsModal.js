@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
+import CardProfile from './CardProfile';
 import TopBar from './TopBar';
+import Hotel from 'react-native-vector-icons/FontAwesome5';
+import ArrowRight from 'react-native-vector-icons/MaterialIcons';
 
 export default function OptionsModal({ modalOptionsVisible, toggleOptions }) {
     
@@ -19,10 +22,14 @@ export default function OptionsModal({ modalOptionsVisible, toggleOptions }) {
         <View style={styles.modalView}>
             <TopBar btnFunc={() => toggleOptions()} pageName={'Configuration'}/>
             <View style={styles.cardProfile}>
-
+                <CardProfile toggleOptions={toggleOptions} />
             </View>
-            <View style={styles.moreInfos}>
-
+            <View style={styles.moreInfo}>
+                <View styles={styles.moreInfoLeft}>
+                  <Hotel name="hotel" style={{ color: '#FF881A', fontSize: 20 }} />
+                  <Text style={{ fontFamily: 'poppins', fontSize: 20, color: '#EEEEEE'}}>My Trips</Text>
+                </View>
+                <ArrowRight name="arrow-forward-ios" style={{ color: '#EEEEEE', fontSize: 15 }} />
             </View>
         </View>
 
@@ -35,7 +42,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: '#222222',
     marginLeft: 0,
     left: 0,
@@ -50,5 +57,27 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '8%',
     backgroundColor: 'blue'
+  },
+  cardProfile: {
+    width: '100%',
+    height: '20%',
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '15px'
+  },
+  moreInfo: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '20px'
+  },
+  moreInfoLeft: {
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '10px'
   }
 });
