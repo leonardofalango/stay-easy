@@ -4,7 +4,7 @@ const logo = require('../assets/completedLogo.png');
 const facebook = require('../assets/facebook.png');
 const google = require('../assets/google.png');
 const background = require('../assets/background.png');
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorComponent from '../components/ErrorComponent';
 
 
