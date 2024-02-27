@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     box: {
         width: '100vw',
         height: '2rem',
-        paddingHorizontal: '2rem',
+        paddingHorizontal: '1rem',
     },
     btn: {
         backgroundColor: '#3A3A3A',

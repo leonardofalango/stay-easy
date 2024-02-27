@@ -1,5 +1,5 @@
 const User = require("../model/User")
-const Jwt = require("./jwtService")
+const Jwt = require("../services/jwtService")
 const crypto = require("crypto-js")
 
 class UserController
@@ -29,7 +29,7 @@ class UserController
                 birthday,
                 status,
                 cpf
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
             
             const user = {
@@ -38,7 +38,8 @@ class UserController
                 password : crypto.MD5(password),
                 birthday,
                 status,
-                cpf
+                cpf,
+                verified : false
             }
             
             const response = await User.create(user)
@@ -143,11 +144,15 @@ class UserController
                     data : user,
                     token : jwt
                 })
+            else
+                return res.status(400).send({
+                    message: 'Usuário ou senha inválidos'
+                })
 
         } catch (e) {
             
 
-            res.status(500).send({
+            return res.status(500).send({
                 message : "Error",
                 debug : e.message
             })

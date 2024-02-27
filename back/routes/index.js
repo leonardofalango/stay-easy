@@ -4,6 +4,7 @@ const hotelRoutes = require('./hotelRoutes')
 const roomRoutes = require('./roomRoutes')
 const authRoutes = require('./authRoutes')
 
+const mailRoutes = require('./mailRoutes')
 
 module.exports = (app) => {
     app.use(
@@ -14,4 +15,7 @@ module.exports = (app) => {
         authRoutes
     )
 
+    app.use("/user", userRoutes)
+
+    app.use("/mail", mailRoutes)
 }

@@ -107,24 +107,27 @@ export default function Cadastro({ navigation }) {
                             value={ confirmPassword }
                             placeholder='Confirm Password'
                         />
-                        <View style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
+                        <View 
+                            onTouchStart={() => setIsChecked(!isChecked)}
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
                             <CheckBox
                                 center
                                 style={styles.check}
                                 checked={isChecked}
                                 checkedColor={'#FF902B'}
-                                onPress={() => setIsChecked(!isChecked)}
                             />
                             <Text
                                 style={{
                                     fontFamily: 'Poppins', 
                                     fontWeight: '600', 
-                                    fontSize: '1.05rem'}}
+                                    fontSize: '0.875rem',
+                                    color: '#ccc'}}
                             >
                                 Subscribe to newsletter
                             </Text>
@@ -153,7 +156,7 @@ export default function Cadastro({ navigation }) {
                                 fontSize: '1rem',
                                 display: 'flex',
                                 gap: '4px',
-                                color: '#363636',
+                                color: '#aaa',
                                 marginTop: '2.5rem'}}
                         >
                             Already have an account?
@@ -164,7 +167,7 @@ export default function Cadastro({ navigation }) {
                                     fontWeight: '600', 
                                     fontSize: '1rem',
                                     textDecorationLine: '',
-                                    color: 'black'}}
+                                    color: '#eee'}}
                             >
                                 Login
                             </Text>
@@ -215,7 +218,7 @@ const styles = StyleSheet.create({
         width: '100vw',
         height: '95vh',
         paddingTop: '80px',
-        backgroundColor: '#E8E8E8',
+        backgroundColor: '#222',
     },
     inputs: {
         width: "80%",
@@ -226,7 +229,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: "100%",
-        backgroundColor: "#242424",
+        backgroundColor: "#191919",
         color: "#fff",
         fontFamily: 'Poppins',
         height: '4rem',

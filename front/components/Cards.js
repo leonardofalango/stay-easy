@@ -6,6 +6,8 @@ export default function Cards() {
     return (
             <View style={styles.box}>
                 <Card 
+                    key={1}
+                    id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
                     air
@@ -17,6 +19,8 @@ export default function Cards() {
                     price='99.90'
                 />
                 <Card 
+                    key={2}
+                    id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
                     air
@@ -28,6 +32,8 @@ export default function Cards() {
                     price='99.90'
                 />
                 <Card 
+                    key={3}
+                    id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
                     air
@@ -39,6 +45,8 @@ export default function Cards() {
                     price='99.90'
                 />
                 <Card 
+                    key={4}
+                    id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
                     air
