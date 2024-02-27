@@ -25,8 +25,8 @@ export default function OptionsModal({ modalOptionsVisible, toggleOptions }) {
                 <CardProfile toggleOptions={toggleOptions} />
             </View>
             <View style={styles.moreInfo}>
-                <View styles={styles.moreInfoLeft}>
-                  <Hotel name="hotel" style={{ color: '#FF881A', fontSize: 20 }} />
+                <View style={styles.moreInfoLeft}>
+                  <Hotel name="hotel" style={{ color: '#FF881A', fontSize: 16 }} />
                   <Text style={{ fontFamily: 'poppins', fontSize: 20, color: '#EEEEEE'}}>My Trips</Text>
                 </View>
                 <ArrowRight name="arrow-forward-ios" style={{ color: '#EEEEEE', fontSize: 15 }} />
@@ -71,13 +71,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '20px'
+    paddingHorizontal: 40,
+    marginTop: 20
   },
   moreInfoLeft: {
-    width: '80%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: '10px'
   }
 });
