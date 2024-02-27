@@ -1,8 +1,6 @@
-
 import CryptoJS from "react-native-crypto-js";
 import axios from 'axios'
 
-// const host = `${process.env.hoster}${process.env.port}/user`
 
 class UserService
 {
@@ -14,8 +12,7 @@ class UserService
 
             const response = await axios.post(this.host + "/login", { data: aesData })
                 .then((res) => {
-                    sessionStorage.setItem("token", res.data.token)
-                    return { status: res.status, data: res.data.data }
+                    return { status: res.status, data: { data: res.data.data, token: res.data.token } }
                 })
                 .catch((err) => { return { status: err.response.status } });
             

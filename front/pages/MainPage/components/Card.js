@@ -1,12 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, TextInput, TouchableOpacity, Touchable, Text, ImageBackground, Image } from 'react-native';
-const hotelImg = require('../assets/hotel.png');
-const airImg = require('../assets/icons/air.png');
-const bedImg = require('../assets/icons/bed.png');
-const wifiImg = require('../assets/icons/wifi.png');
-const bathImg = require('../assets/icons/bath.png');
-const peopleImg = require('../assets/icons/people.png');
-const star = require('../assets/icons/star.png');
+import FAIcon from 'react-native-vector-icons/FontAwesome';
+import FA5Icon from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import AntIcon from 'react-native-vector-icons/AntDesign';
+const hotelImg = require('../../../assets/hotel.png');
+const airImg = require('../../../assets/icons/air.png');
+const bedImg = require('../../../assets/icons/bed.png');
+const wifiImg = require('../../../assets/icons/wifi.png');
+const bathImg = require('../../../assets/icons/bath.png');
+const peopleImg = require('../../../assets/icons/people.png');
+const star = require('../../../assets/icons/star.png');
 
 export default function Card(props) {
     const navigation = useNavigation();
@@ -15,7 +20,7 @@ export default function Card(props) {
         if (props.air)
             return (
                 <View style={styles.detail}>
-                    <Image source={airImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
+                    <FAIcon name="snowflake-o" style={styles.icon} />
                 </View>
             )
     }
@@ -24,7 +29,7 @@ export default function Card(props) {
         if (props.wifi)
             return (
                 <View style={styles.detail}>
-                    <Image source={wifiImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
+                    <Ionicon name="wifi-sharp" style={[styles.icon, {fontSize: 18}]} />
                 </View>
             )
     }
@@ -33,7 +38,7 @@ export default function Card(props) {
         if (props.bath)
             return (
                 <View style={styles.detail}>
-                    <Image source={bathImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
+                    <FA5Icon name="bath" style={[styles.icon, {fontSize: 14}]} />
                 </View>
             )
     }
@@ -41,7 +46,7 @@ export default function Card(props) {
     const renderStars = () => {
         const stars = [];
         for (let i = 0; i < props.stars; i++)
-            stars.push(<Image source={star} style={{ width: 10, height: 10, resizeMode: 'contain' }} />);
+            stars.push(<AntIcon name="star" style={[styles.icon, {fontSize: 12}]} />);
         
         return stars;
     }
@@ -63,11 +68,11 @@ export default function Card(props) {
                         {renderBath()}
                     </View>
                     <View style={styles.detail}>
-                        <Image source={bedImg} style={{ width: 12, height: 12, resizeMode: 'contain' }} />
+                        <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
                         <Text style={styles.detailText}>{props.bed}</Text>
                     </View>
                     <View style={styles.detail}>
-                        <Image source={peopleImg} style={{ width: 12, height: 12, resizeMode: 'contain' }} />
+                        <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
                         <Text style={styles.detailText}>{props.people} people</Text>
                     </View>
                 </View>
@@ -173,5 +178,7 @@ const styles = StyleSheet.create({
     perday: {
         color: '#ABABAB',
         fontFamily: 'Poppins'
-    }
+    },
+    icon: { fontSize: 16, color: '#FF881A' },
+    
 });

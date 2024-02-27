@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { View, StyleSheet, TextInput, TouchableOpacity, Touchable, Text, ImageBackground, Image } from 'react-native';
-import Cards from '../components/Cards';
-import Filter from '../components/Filter';
-import SearchBox from '../components/SearchBox';
+import Cards from './components/Cards';
+import Filter from '../../components/Filter';
+import SearchBox from '../../components/SearchBox';
 import { useSelector } from "react-redux";
 
 export default function MainPage({ navigation }) {
     const { token } = useSelector((store) => store.user);
-
+    
     const verifyLogin = () => {
         if(token == null) {
             navigation.navigate('login');
@@ -15,7 +15,7 @@ export default function MainPage({ navigation }) {
     }
 
     useEffect(() => {
-        verifyLogin();
+        // verifyLogin();
     }, [])
     
     return (

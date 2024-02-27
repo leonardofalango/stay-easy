@@ -21,8 +21,8 @@ export default function Login({ navigation }) {
     const onHandleLogin = async () => {
         try {
             const data = {
-                name : email,
-                password : pass
+                name: email,
+                password: pass
             }
             
             const response = await UserService.login(data);

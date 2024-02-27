@@ -7,3 +7,7 @@ export default function HotelDetails() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+
+});
