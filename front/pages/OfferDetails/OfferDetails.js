@@ -11,12 +11,24 @@ export default function OfferDetails({ route, navigation }) {
         'https://cf.bstatic.com/xdata/images/hotel/max1024x768/314331656.jpg?k=fdc7cf48ef84a885ffbacbc7303aff291e82d387e52938dff3ce6b56e0a23d54&o=&hp=1'
     ]
 
+    const hotel = {
+        name: "Hotel Golden Nuggets",
+        destination: 'Las Vegas',
+        air: true,
+        wifi: true,
+        bath: true,
+        bed:'1 King Size Bed',
+        people:'2',
+        stars:5,
+        price:'99.90'
+    }
+
     return (
         <View style={styles.container}>
             <TopBar btnFunc={() => navigation.navigate("main")} pageName={"Details"} />
             <ImageCarousel images={images} />
             <View style={styles.content}>
-                <HotelDetails />
+                <HotelDetails data={hotel} />
             </View>
         </View>
     )
@@ -29,8 +41,8 @@ const styles = StyleSheet.create({
         minHeight: '100%',
     },
     content: {
-        marginTop: 42,
+        marginTop: 32,
         marginHorizontal: 16,
-        width: 'calc(100% - 32)'
+        width: 'calc(100% - 32)',
     },
 })

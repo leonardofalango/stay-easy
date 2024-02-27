@@ -49,7 +49,7 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     image: {
         width: width - 32,
-        height: width / 2,
+        height: width / 1.5,
         marginHorizontal: 16,
         borderRadius: 8
     },
