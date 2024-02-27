@@ -9,11 +9,11 @@ const RoomSchema = new mongoose.Schema({
     description: { type: String, required: true },
     images: { type: Array, required: true },
     rating: { type: Number, required: true },
-    reviews: { type: Array, required: true },
+    reviews: { type: Object, required: true },
     amenities: { type: Array, required: true },
-    checkin: { type: String, required: true },
-    checkout: { type: String, required: true },
-    payment: { type: String, required: true },
+    checkin: { type: Object, required: true },
+    checkout: { type: Object, required: true },
+    payment: { type: Object, required: true },
     status: { type: String, required: true },
 
 }, { timestamps: {} });
