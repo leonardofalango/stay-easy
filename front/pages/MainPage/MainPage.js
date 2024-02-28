@@ -15,7 +15,7 @@ export default function MainPage({ navigation }) {
     }
 
     useEffect(() => {
-        // verifyLogin();
+        verifyLogin();
     }, [])
     
     return (

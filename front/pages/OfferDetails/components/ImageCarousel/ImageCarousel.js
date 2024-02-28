@@ -3,7 +3,6 @@ import { FlatList, StyleSheet, View, Image, Text, Dimensions, Animated } from "r
 import Pagination from "./Pagination";
 
 export default function ImageCarousel({ images }) {
-    const [index, setIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const handleOnScroll = event => {

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import TopBar from "../../components/TopBar";
-import HotelDetails from "./components/HotelDetails";
 import ImageCarousel from "./components/ImageCarousel/ImageCarousel";
+import RoomDetails from "./components/RoomDetails";
 
 export default function OfferDetails({ route, navigation }) {
     const id = route.params;
@@ -14,9 +14,7 @@ export default function OfferDetails({ route, navigation }) {
     const hotel = {
         name: "Hotel Golden Nuggets",
         destination: 'Las Vegas',
-        air: true,
-        wifi: true,
-        bath: true,
+        amenities:['wifi', 'air', 'dog', 'bath'],
         bed:'1 King Size Bed',
         people:'2',
         stars:5,
@@ -28,7 +26,7 @@ export default function OfferDetails({ route, navigation }) {
             <TopBar btnFunc={() => navigation.navigate("main")} pageName={"Details"} />
             <ImageCarousel images={images} />
             <View style={styles.content}>
-                <HotelDetails data={hotel} />
+                <RoomDetails data={hotel} />
             </View>
         </View>
     )

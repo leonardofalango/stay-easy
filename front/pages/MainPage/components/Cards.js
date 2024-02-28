@@ -10,9 +10,7 @@ export default function Cards() {
                     id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
-                    air
-                    wifi
-                    bath
+                    amenities={['air', 'wifi']}
                     bed='1 King Size Bed'
                     people='2'
                     stars={5}
@@ -23,9 +21,7 @@ export default function Cards() {
                     id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
-                    air
-                    wifi
-                    bath
+                    amenities={['air', 'bath']}
                     bed='1 King Size Bed'
                     people='2'
                     stars={5}
@@ -36,22 +32,7 @@ export default function Cards() {
                     id={1}
                     hotel='Hotel Golden Nuggets'
                     destination='Las Vegas'
-                    air
-                    wifi
-                    bath
-                    bed='1 King Size Bed'
-                    people='2'
-                    stars={5}
-                    price='99.90'
-                />
-                <Card 
-                    key={4}
-                    id={1}
-                    hotel='Hotel Golden Nuggets'
-                    destination='Las Vegas'
-                    air
-                    wifi
-                    bath
+                    amenities={['wifi', 'air', 'dog', 'bath']}
                     bed='1 King Size Bed'
                     people='2'
                     stars={5}

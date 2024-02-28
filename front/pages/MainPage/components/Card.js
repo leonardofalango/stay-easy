@@ -5,6 +5,7 @@ import FA5Icon from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import { IconLib } from '../../../utils/IconLib';
 const hotelImg = require('../../../assets/hotel.png');
 const airImg = require('../../../assets/icons/air.png');
 const bedImg = require('../../../assets/icons/bed.png');
@@ -16,37 +17,10 @@ const star = require('../../../assets/icons/star.png');
 export default function Card(props) {
     const navigation = useNavigation();
 
-    const renderAir = () => {
-        if (props.air)
-            return (
-                <View style={styles.detail}>
-                    <FAIcon name="snowflake-o" style={styles.icon} />
-                </View>
-            )
-    }
-
-    const renderWifi = () => {
-        if (props.wifi)
-            return (
-                <View style={styles.detail}>
-                    <Ionicon name="wifi-sharp" style={[styles.icon, {fontSize: 18}]} />
-                </View>
-            )
-    }
-
-    const renderBath = () => {
-        if (props.bath)
-            return (
-                <View style={styles.detail}>
-                    <FA5Icon name="bath" style={[styles.icon, {fontSize: 14}]} />
-                </View>
-            )
-    }
-
     const renderStars = () => {
         const stars = [];
         for (let i = 0; i < props.stars; i++)
-            stars.push(<AntIcon name="star" style={[styles.icon, {fontSize: 12}]} />);
+            stars.push(<AntIcon name="star" key={i} style={[styles.icon, {fontSize: 12}]} />);
         
         return stars;
     }
@@ -63,9 +37,7 @@ export default function Card(props) {
                 </View>
                 <View style={styles.details}>
                     <View style={styles.simpleDetails}>
-                        {renderAir()}
-                        {renderWifi()}
-                        {renderBath()}
+                        { props.amenities.map((amenity) => IconLib[amenity]()) }
                     </View>
                     <View style={styles.detail}>
                         <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
@@ -95,14 +67,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        gap: '8px'
+        gap: '8px',
+        flexWrap: 'wrap'
     },
     box: {
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#3A3A3A',
-        height: '12rem',
+        minHeight: '12rem',
         borderRadius: 16,
     },
     imgBox: {
@@ -151,13 +124,12 @@ const styles = StyleSheet.create({
         fontSize: '0.75rem'
     },
     bottom: {
-        width: '90%',
+        width: '100%',
         height: '20%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        position: 'absolute',
-        bottom: 20
+        paddingTop: 12
     },
     priceBox: {
         alignItems: 'flex-end',
