@@ -1,5 +1,7 @@
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
 import TopBar from '../components/TopBar';
+const userImage = require('../assets/caqui.png');
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function EditProfile({ navigation }) {
     return (
@@ -7,10 +9,10 @@ export default function EditProfile({ navigation }) {
             <TopBar btnFunc={() => navigation.navigate('main')} pageName={'Edit Profile'}/>
             <View style={styles.userPhoto}>
                 <View style={styles.photo}>
-
+                    <Image source={userImage} style={{ width: 160, height: 160, resizeMode: 'cover', borderRadius: '50%' }}/>
                 </View>
                 <View style={styles.iconEdit}>
-                    
+                    <Icon name="edit" style={{ color: '#FF881A', fontSize: 32 }} />
                 </View>
             </View>
             <View style={styles.userIDs}>
@@ -18,7 +20,7 @@ export default function EditProfile({ navigation }) {
                     <Text style={{}}>Kaiky Santos</Text>
                 </View>
                 <View style={styles.username}>
-                    <Text style={{}}>@caqui</Text>
+                    <Text style={{}}>@caqui</Text> 
                 </View>
             </View>
             <View style={styles.userData}>
@@ -63,5 +65,18 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '#222222',
+        alignItems: 'center'
     },
+    userPhoto: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    iconEdit: {
+        backgroundColor: '#3A3A3A',
+        borderRadius: 50,
+        padding: 8,
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+    }
 });
