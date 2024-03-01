@@ -3,6 +3,7 @@ import TopBar from '../components/TopBar';
 const userImage = require('../assets/caqui.png');
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
 export default function EditProfile({ navigation }) {
     return (
         <View style={styles.container}>
@@ -17,29 +18,29 @@ export default function EditProfile({ navigation }) {
             </View>
             <View style={styles.userIDs}>
                 <View style={styles.name}>
-                    <Text style={{}}>Kaiky Santos</Text>
+                    <Text style={{ fontSize: 25, fontFamily: 'Poppins', color: '#EEEEEE', fontWeight: 600 }}>Kaiky Santos</Text>
                 </View>
                 <View style={styles.username}>
-                    <Text style={{}}>@caqui</Text> 
+                    <Text style={styles.grayText}>@caqui</Text> 
                 </View>
             </View>
             <View style={styles.userData}>
                 <View style={styles.email}>
-                    <Text style={{}}>EMAIL ADDRESS</Text>
+                    <Text style={styles.grayText}>EMAIL ADDRESS</Text>
                     <View style={styles.inputEmail}>
-                        <Text style={{}}>kaikysr0000@gmail.com</Text>
+                        <Text style={styles.whiteText}>kaikysr0000@gmail.com</Text>
                     </View>
                 </View>
                 <View style={styles.cpf}>
-                    <Text style={{}}>CPF</Text>
+                    <Text style={styles.grayText}>CPF</Text>
                     <View style={styles.inputCPF}>
-                        <Text style={{}}>144.785.934-00</Text>
+                        <Text style={styles.whiteText}>144.785.934-00</Text>
                     </View>
                 </View>
                 <View style={styles.birthday}>
-                    <Text style={{}}>BIRTHDAY</Text>
+                    <Text style={styles.grayText}>BIRTHDAY</Text>
                     <View style={styles.day}>
-
+                        
                     </View>
                     <View style={styles.mouth}>
                         
@@ -65,7 +66,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '#222222',
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: 25
     },
     userPhoto: {
         display: 'flex',
@@ -78,5 +80,45 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         right: 0
-    }
+    },
+    userIDs: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    grayText: {
+        fontSize: 18, 
+        fontFamily: 'Poppins', 
+        color: '#ABABAB', 
+        fontWeight: 600
+    },
+    whiteText: {
+        fontSize: 18, 
+        fontFamily: 'Poppins', 
+        color: '#EEEEEE', 
+        fontWeight: 600
+    },
+    userData: {
+        width: '85%',
+        gap: 10
+    },
+    email: {
+        gap: 10
+    },
+    inputEmail: {
+        borderRadius: 15,
+        padding: 15,
+        borderWidth: 2,
+        borderColor: "#ffffff"
+    },
+    cpf: {
+        gap: 10
+    },
+    inputCPF: {
+        borderRadius: 15,
+        padding: 15,
+        borderWidth: 2,
+        borderColor: "#ffffff"
+    },
+   
 });
