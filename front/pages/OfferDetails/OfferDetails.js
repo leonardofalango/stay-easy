@@ -13,10 +13,11 @@ export default function OfferDetails({ route, navigation }) {
 
     const hotel = {
         name: "Hotel Golden Nuggets",
+        hotelDescription: 'A beautiful place to relax and construct new memories. The great localization and the delicious food are a differential.',
         destination: 'Las Vegas',
         amenities:['wifi', 'air', 'dog', 'bath'],
-        bed:'1 King Size Bed',
-        people:'2',
+        bed:1,
+        people:2,
         stars:5,
         price:'99.90'
     }

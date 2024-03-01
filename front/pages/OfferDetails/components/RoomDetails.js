@@ -1,5 +1,7 @@
 import { View, StyleSheet, Text } from "react-native";
-import { IconLib } from "../../../utils/IconLib";
+import { IconLib, NameIconLib } from "../../../utils/IconLib";
+import FA5Icon from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default function RoomDetails({ data }) {
     const renderStars = () => {
@@ -25,13 +27,24 @@ export default function RoomDetails({ data }) {
                         {renderStars()}
                     </View>
                     <View style={styles.amenities}>
-                        { data.amenities.map((amenity) => IconLib[amenity]('#fffeee')) }
+                        <View style={styles.detail}>
+                            <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
+                            <Text style={styles.detailText}>{data.bed}</Text>
+                        </View>
+                        <View style={styles.detail}>
+                            <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
+                            <Text style={styles.detailText}>{data.people}</Text>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.priceContainer}>
                     <Text style={styles.price}>US$ { data.price }</Text>
                 </View>
             </View>
+            <View style={styles.extensiveAmenities}>
+                { data.amenities.map((amenity) => NameIconLib[amenity]()) }
+            </View>
+            <Text style={styles.description}>{data.hotelDescription}</Text>
         </View>
     )
 }
@@ -96,5 +109,25 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins',
         color: '#fffeee',
         fontSize: 20
-    }
+    },
+    description: {
+        color: '#bbb',
+        padding: 12,
+        textAlign: 'left',
+        fontFamily: 'Poppins',
+        marginTop: 8
+    },
+    extensiveAmenities: {
+        marginTop: 8,
+        paddingHorizontal: 24,
+        gap: 4
+    },
+    detail: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 2,
+        width: 'auto',
+        height: '1rem'
+    },
 });
