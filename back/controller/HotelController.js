@@ -96,6 +96,40 @@ class HotelController {
         }
     }
 
+    static addNewRoom = async (req, res) => {
+        try {
+            const {
+                rooms,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+
+            data = await Hotel.findOne({_id: req.params.id})
+            if (data === null)
+                return res.status(404).send({
+                    message : "Not found"
+                })
+            data.rooms.push(rooms)
+            const response = await Hotel.updateOne({_id: req.params.id}, {rooms: data.rooms})
+            return res.status(200).send({
+                message : "Room added!",
+                data : rooms,
+                response : response
+            })
+        }
+        catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    }
+    
     static update = async (req, res) => {
         try {
             const {
@@ -249,72 +283,6 @@ class HotelController {
         }
     }
 
-    static search = async (req, res) => {
-        try {
-            const {
-                name,
-                address,
-                rooms,
-                price,
-                description,
-                images,
-                rating,
-                reviews,
-                amenities,
-                services,
-                rules,
-                checkin,
-                checkout,
-                cancellation,
-                payment,
-                contact,
-                owner,
-                status,
-                token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
-
-            if (!Jwt.verify(token))
-                return res.status(401).send({
-                    message : "Unauthorized"
-                })
-        
-            const hotel = {
-                name,
-                address,
-                rooms,
-                price,
-                description,
-                images,
-                rating,
-                reviews,
-                amenities,
-                services,
-                rules,
-                checkin,
-                checkout,
-                cancellation,
-                payment,
-                contact,
-                owner,
-                status
-            }
-
-            const data = await Hotel.find(hotel)
-
-            return res.status(200).send({
-                message : "Hotel found!",
-                data : data
-            })
-        } catch (e) {
-            return res.status(500).send({
-                message : "Error",
-                debug : e.message,
-                data : req.body
-            })
-        }
-    }
-
-
     static searchByPrice = async (req, res) => {
         try {
             const {
@@ -371,6 +339,33 @@ class HotelController {
     
     }
 
+    static searchByOwner = async (req, res) => {
+        try {
+            const {
+                owner,
+                token
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+
+            if (!Jwt.verify(token))
+                return res.status(401).send({
+                    message : "Unauthorized"
+                })
+        
+            const data = await Hotel.find({owner: owner})
+
+            return res.status(200).send({
+                message : "Hotel found!",
+                data : data
+            })
+        } catch (e) {
+            return res.status(500).send({
+                message : "Error",
+                debug : e.message,
+                data : req.body
+            })
+        }
+    }
+
     static searchByRating = async (req, res) => {
         try {
             const {
@@ -400,3 +395,5 @@ class HotelController {
 
 
 }
+
+module.exports = HotelController
