@@ -27,8 +27,7 @@
     "multer-s3": "^3.0.1",
     "nodemailer": "^6.9.9",
     "nodemon": "^3.0.1",
-    "stripe": "^14.18.0"
-    "nodemon": "^3.0.1",
+    "stripe": "^14.18.0",
     "passport": "^0.7.0",
     "passport-facebook": "^3.0.0"
   }
