@@ -47,7 +47,7 @@ export default function Card(props) {
     }
 
     return (
-        <View style={styles.box} onTouchStart={() => navigation.navigate('offer', props.id)}>
+        <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('offer', props.id)}>
             <View style={styles.imgBox}>
                 <Image source={hotelImg} style={{ width: '100%', height: '100%', resizeMode: 'cover', borderBottomLeftRadius: 16, borderTopLeftRadius: 16 }} />
             </View>
@@ -81,7 +81,7 @@ export default function Card(props) {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

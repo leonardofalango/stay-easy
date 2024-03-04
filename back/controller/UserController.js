@@ -50,6 +50,7 @@ class UserController
                 response : response
             })
         } catch (e) {
+            console.log(e)
             return res.status(500).send({
                 message : "Error",
                 debug : e.message,
@@ -179,6 +180,7 @@ class UserController
             })
 
         } catch (e) {
+            console.log(e)
             res.status(500).send({
                 message : "Error",
                 debug : e.message

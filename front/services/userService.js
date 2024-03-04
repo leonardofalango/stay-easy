@@ -5,6 +5,7 @@ import axios from 'axios'
 
 class UserService
 {
+    static host = 'http://localhost:8080/';
 
     static loginFacebook = async () => {
         try {
@@ -36,7 +37,7 @@ class UserService
         try {
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
 
-            const response = await axios.post(this.host + "/login", { data: aesData })
+            const response = await axios.post(this.host + "user/login", { data: aesData })
                 .then((res) => {
                     sessionStorage.setItem("token", res.data.token)
                     return { status: res.status, data: res.data.data }
@@ -61,7 +62,7 @@ class UserService
             const aesData = CryptoJS.AES.encrypt(JSON.stringify(data), "bolosanha").toString()
             
             
-            const res = await axios.post(this.host + "/add", { data : aesData })
+            const res = await axios.post(this.host + "user/add", { data : aesData })
             
             return {
                 status: res.status,
@@ -85,6 +86,21 @@ class UserService
     //         console.log(e.message)-----------------------------------------------------------------------------------------------------------------------------------
     //     }
     // }
+
+    static sendEmail = async (data) => {
+        try {
+            const email = data.email;
+
+            const res = await axios.get(`${this.host}mail/send-email/${email}`);
+            
+            return {
+                status: res.status,
+                data: res.data
+            }
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
 }
 
 export { UserService }

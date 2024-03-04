@@ -13,6 +13,8 @@ export default function Cadastro({ navigation }) {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const [error, setError] = useState({error: false, message: ''});
+
     const register = async () => {
         try {
 
@@ -28,26 +30,38 @@ export default function Cadastro({ navigation }) {
                 status : isChecked
             }
 
-
-            
-
             const response = await UserService.create(newUser)
 
             console.log(response)
             if (response.status == 200)
             {
+                const validMail = await UserService.sendEmail(newUser)
+
+                if (validMail.status != 200) {
+                    setError({
+                        error: true,
+                        message: "Email inválido ou serviço de email indisponível"
+                    })
+                    console.log(validMail)
+                    return
+                }
+
                 setUsername("")
                 setName("")
                 setBirthdate("")
                 setCpf("")
                 setPassword("")
                 setConfirmPassword("")
-                navigation.navigate("login")
+
+                
             }
             
         } catch (e) {
-            console.log("Error")
             console.log(e.message)
+            setError({
+                error: true,
+                message: "Erro interno"
+            })
         }
     }
 
@@ -66,28 +80,40 @@ export default function Cadastro({ navigation }) {
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            onChange={ (e) => setUsername(e.target.value) }
+                            onChange={ (e) => {
+                                setUsername(e.target.value)
+                                setError({error: false, message: ''})
+                            }}
                             value={ username }
                             placeholder='Email or username'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            onChange={ (e) => setName(e.target.value) }
+                            onChange={ (e) => {
+                                setName(e.target.value)
+                                setError
+                            }}
                             value={ name }
                             placeholder='Name'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            onChange={ (e) => setCpf(e.target.value) }
+                            onChange={ (e) => {
+                                setCpf(e.target.value)
+                                setError
+                            }}
                             value={ cpf }
                             placeholder='CPF'
                         />
                         <TextInput 
                             style={styles.input}
                             placeholderTextColor="#fff" 
-                            onChange={ (e) => setBirthdate(e.target.value) }
+                            onChange={ (e) => {
+                                setBirthdate(e.target.value)
+                                setError
+                            }}
                             value={ birthdate }
                             placeholder='Birthdate'
                         />
@@ -95,7 +121,10 @@ export default function Cadastro({ navigation }) {
                             style={styles.input}
                             placeholderTextColor="#fff" 
                             secureTextEntry
-                            onChange={ (e) => setPassword(e.target.value) }
+                            onChange={ (e) => {
+                                setPassword(e.target.value)
+                                setError
+                            }}
                             value={ password }
                             placeholder='Password'
                         />
@@ -103,7 +132,10 @@ export default function Cadastro({ navigation }) {
                             style={styles.input}
                             placeholderTextColor="#fff" 
                             secureTextEntry
-                            onChange={ (e) => setConfirmPassword(e.target.value) }
+                            onChange={ (e) => {
+                                setConfirmPassword(e.target.value)
+                                setError
+                            }}
                             value={ confirmPassword }
                             placeholder='Confirm Password'
                         />
