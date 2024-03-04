@@ -1,10 +1,27 @@
-import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import { Modal, View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import { useState } from 'react';
 import TopBar from '../components/TopBar';
 const userImage = require('../assets/caqui.png');
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import Icon2 from 'react-native-vector-icons/FontAwesome';
+import DatePicker from 'react-native-modern-datepicker';
 
 export default function EditProfile({ navigation }) {
+
+    const [open, setOpen] = useState(false)
+    const [date, setDate] = useState('')
+
+    const [birthdayUser, setbirthdayUser] = useState('Select date')
+
+    function handleOnPress () {
+        setOpen(!open);
+    }
+
+    function handleChange (propDate) {
+        setDate(propDate);
+        setbirthdayUser(propDate);
+    }
+
     return (
         <View style={styles.container}>
             <TopBar btnFunc={() => navigation.navigate('main')} pageName={'Edit Profile'}/>
@@ -39,20 +56,35 @@ export default function EditProfile({ navigation }) {
                 </View>
                 <View style={styles.birthday}>
                     <Text style={styles.grayText}>BIRTHDAY</Text>
-                    <View style={styles.day}>
-                        
-                    </View>
-                    <View style={styles.mouth}>
-                        
-                    </View>
-                    <View style={styles.year}>
-                        
+                    <View>
+                        <TouchableOpacity style={styles.inputBirthday} onPress={handleOnPress}>
+                            <Text style={styles.whiteText}>{birthdayUser}</Text>
+                            <Icon2 name="calendar" style={{ color: '#FF881A', fontSize: 25 }} />
+                        </TouchableOpacity>
+                        <Modal
+                        animationType='slide'
+                        transparent={true}
+                        visible={open}
+                        >
+                            <View style={styles.centeredView}> 
+                                <View style={styles.modalView}>
+
+                                    <DatePicker 
+                                    mode={'calendar'}
+                                    selected={date}
+                                    onDateChange={handleChange}
+                                    />
+
+                                    <TouchableOpacity onPress={handleOnPress}><Text>close</Text></TouchableOpacity>
+                                </View>
+                            </View>
+                        </Modal>
                     </View>
                 </View>
             </View>
             <View style={styles.logout}>
                 <TouchableOpacity style={{}}>
-                    Log Out
+                    <Text>Log Out</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -120,5 +152,40 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#ffffff"
     },
-   
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        width: '90%',
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    inputBirthday: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: 15,
+        borderRadius: 15,
+        padding: 15,
+        borderWidth: 2,
+        borderColor: '#ffffff'
+    },
+    birthday: {
+        gap: 10
+    },
 });
