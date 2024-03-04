@@ -28,12 +28,12 @@ export default function RoomDetails({ data }) {
                     </View>
                     <View style={styles.amenities}>
                         <View style={styles.detail}>
-                            <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
                             <Text style={styles.detailText}>{data.bed}</Text>
+                            <FA5Icon name="bed" style={[styles.icon, {fontSize: 11}]} />
                         </View>
                         <View style={styles.detail}>
-                            <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
                             <Text style={styles.detailText}>{data.people}</Text>
+                            <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
                         </View>
                     </View>
                 </View>
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 8,
         flexWrap: 'wrap',
-        paddingVertical: 6
+        paddingVertical: 6,
+        paddingLeft: 4
     },
     priceContainer: {
         width: '50%',
         alignItems: 'flex-end',
-        justifyContent: 'center'
     },
     price: {
         fontWeight: 600,
@@ -126,8 +126,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 2,
+        gap: 4,
         width: 'auto',
-        height: '1rem'
+        justifyContent: 'center'
     },
+    detailText: {
+        color: '#ccc',
+        fontFamily: 'Poppins'
+    },
+    icon: {
+        color: '#ccc'
+    }
 });

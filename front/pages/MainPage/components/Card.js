@@ -44,7 +44,7 @@ export default function Card(props) {
                         <Text style={styles.detailText}>{props.bed}</Text>
                     </View>
                     <View style={styles.detail}>
-                        <MaterialIcon name="people-alt" style={{fontSize: 15, color: '#fff'}} />
+                        <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
                         <Text style={styles.detailText}>{props.people} people</Text>
                     </View>
                 </View>
