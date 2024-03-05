@@ -1,4 +1,4 @@
-const { Jwt } = require("../services/jwtService")
+const Jwt = require("../services/jwtService")
 const Hotel = require("../model/Hotel")
 const crypto = require("crypto-js")
 
@@ -8,9 +8,9 @@ class HotelController {
         try {
             const {
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -33,61 +33,46 @@ class HotelController {
         try {
             const {
                 name,
-                address,
-                rooms,
-                price,
-                description,
-                images,
-                rating,
-                reviews,
+                hotelDescription,
+                destination,
                 amenities,
-                services,
-                rules,
-                checkin,
-                checkout,
-                cancellation,
-                payment,
-                contact,
-                owner,
-                status,
-                token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+                bed,
+                images,
+                people,
+                price,
+                stars
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
             
+            console.log('hotel add')
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
         
             const hotel = {
                 name,
-                address,
-                rooms,
-                price,
-                description,
-                images,
-                rating,
-                reviews,
+                hotelDescription,
+                destination,
                 amenities,
-                services,
-                rules,
-                checkin,
-                checkout,
-                cancellation,
-                payment,
-                contact,
-                owner,
-                status
+                bed,
+                images,
+                people,
+                price,
+                stars
             }
 
+            console.log(hotel)
             const response = await Hotel.create(hotel)
-
+            console.log(response)
+            
             return res.status(200).send({
                 message : "Hotel created!",
                 data : hotel,
                 response : response
             })
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({
                 message : "Error",
                 debug : e.message,
@@ -101,9 +86,9 @@ class HotelController {
             const {
                 rooms,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -152,9 +137,9 @@ class HotelController {
                 owner,
                 status,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -215,9 +200,9 @@ class HotelController {
             const {
                 owner,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -255,9 +240,9 @@ class HotelController {
         try {
             const {
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -288,9 +273,9 @@ class HotelController {
             const {
                 price,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -316,9 +301,9 @@ class HotelController {
             const {
                 status,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -344,9 +329,9 @@ class HotelController {
             const {
                 owner,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })
@@ -371,9 +356,9 @@ class HotelController {
             const {
                 rating,
                 token
-            } = JSON.parse(await crypto.AES.decrypt(req.body.data, env.keyAes).toString(crypto.enc.Utf8));
+            } = JSON.parse(await crypto.AES.decrypt(req.body.data, process.env.keyAes).toString(crypto.enc.Utf8));
 
-            if (!Jwt.verify(token))
+            if (false) // !Jwt.verify(token))
                 return res.status(401).send({
                     message : "Unauthorized"
                 })

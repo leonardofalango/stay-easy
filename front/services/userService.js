@@ -46,8 +46,8 @@ class UserService
             
 
             return {
-                status: res.status,
-                data: res.data
+                status: response.status,
+                data: response.data
             }            
 
         } catch (e) {
