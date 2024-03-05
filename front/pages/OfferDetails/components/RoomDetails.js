@@ -38,7 +38,7 @@ export default function RoomDetails({ data }) {
                     </View>
                 </View>
                 <View style={styles.priceContainer}>
-                    <Text style={styles.price}>US$ { data.price }</Text>
+                    <Text style={styles.price}>US$ { data.price.toFixed(2) }</Text>
                 </View>
             </View>
             <View style={styles.extensiveAmenities}>
