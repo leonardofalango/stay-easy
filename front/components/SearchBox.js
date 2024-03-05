@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { View, StyleSheet, TextInput, TouchableOpacity, Touchable, Text, ImageBackground, Image } from 'react-native';
 const menuIcon = require('../assets/icons/menuIcon.png');
 const searchIcon = require('../assets/icons/searchIcon.png');
 
 
-export default function SearchBox() {
+export default function SearchBox({ toggleOptions }) {
+  
+
     return (
         <View style={styles.searchBox}>
-            <TouchableOpacity style={styles.searchBtns}><Image source={menuIcon} style={{ width: '40%', height: '40%', resizeMode: 'contain' }} /></TouchableOpacity>
+            <TouchableOpacity onPress={() =>  toggleOptions() }style={styles.searchBtns}><Image source={menuIcon} style={{ width: '40%', height: '40%', resizeMode: 'contain' }} /></TouchableOpacity>
             <TextInput
                 style={styles.searchInput}
                 placeholder='Find a place to go'

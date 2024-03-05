@@ -7,6 +7,7 @@ import MainPage from './pages/MainPage';
 import HotelRegister from './pages/HotelRegister'
 import './global.css';
 import OfferDetails from './pages/OfferDetails';
+import EditProfile from './pages/EditProfile';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -15,9 +16,10 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name="login" component={Login} />
         <Stack.Screen options={{headerShown: false}} name="hotelRegister" component={HotelRegister} />
+        <Stack.Screen options={{headerShown: false}} name="editprofile" component={EditProfile} />
         <Stack.Screen options={{headerShown: false}} name="main" component={MainPage} />
-        <Stack.Screen options={{headerShown: false}} name="cadastro" component={Cadastro} />
         <Stack.Screen options={{headerShown: false}} name="offer" component={OfferDetails} />
+        <Stack.Screen options={{headerShown: false}} name="cadastro" component={Cadastro} />
       </Stack.Navigator>
     </NavigationContainer>
   );
