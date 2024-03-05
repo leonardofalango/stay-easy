@@ -6,7 +6,7 @@ export default function TotalCalculator({ totalPriceHelper, total, setTotal }) {
         let totalPrice = 0;
         let days = (totalPriceHelper.date.checkout - totalPriceHelper.date.checkin) / (1000 * 3600 * 24) + 1
         
-        totalPrice = (days * totalPriceHelper.dailyPrice) + (totalPriceHelper.ticket.price * 2);
+        totalPrice = (days * totalPriceHelper.dailyPrice) + (totalPriceHelper.ticket.price * 2 * totalPriceHelper.people);
         setTotal(!isNaN(totalPrice) ? totalPrice : 0.00);
     }, [totalPriceHelper.date, totalPriceHelper.ticket])
 

@@ -15,7 +15,7 @@ export default function OfferDetails({ route, navigation }) {
         'https://cf.bstatic.com/xdata/images/hotel/max1024x768/314331656.jpg?k=fdc7cf48ef84a885ffbacbc7303aff291e82d387e52938dff3ce6b56e0a23d54&o=&hp=1'
     ]
 
-    const hotel = {
+    const room = {
         name: "Hotel Golden Nuggets",
         hotelDescription: 'A beautiful place to relax and construct new memories. The great localization and the delicious food are a differential.',
         destination: 'Las Vegas',
@@ -33,9 +33,10 @@ export default function OfferDetails({ route, navigation }) {
     //ticket selecionado (ticket: { name: str, info: str, price: number })
 
     const totalPriceHelper = {
-        dailyPrice: hotel.price,
+        dailyPrice: room.price,
         date: date,
-        ticket: selectedTicket
+        ticket: selectedTicket,
+        people: room.people
     }
 
     const [total, setTotal] = useState(0);
@@ -43,13 +44,14 @@ export default function OfferDetails({ route, navigation }) {
     const onHandleReserve = () => {
         let reserve = {
             roomId: 1,
-            hotel: hotel,
+            hotel: room,
             date: date,
             selectedTicket: selectedTicket,
             total: total
         }
+        
 
-        console.log(reserve);
+        console.log(reserve); // criaria a reserva
     }
 
     return (
@@ -57,7 +59,7 @@ export default function OfferDetails({ route, navigation }) {
             <TopBar btnFunc={() => navigation.navigate("main")} pageName={"Details"} />
             <ImageCarousel images={images} />
             <View style={styles.content}>
-                <RoomDetails data={hotel} />
+                <RoomDetails data={room} />
                 <RangePicker setDate={setDate} />
                 <TicketPicker selectedTicket={selectedTicket} setSelectedTicket={setSelectedTicket}  />
                 <TotalCalculator totalPriceHelper={totalPriceHelper} total={total} setTotal={setTotal} />
