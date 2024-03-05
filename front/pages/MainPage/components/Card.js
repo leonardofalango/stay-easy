@@ -1,47 +1,26 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, TextInput, TouchableOpacity, Touchable, Text, ImageBackground, Image } from 'react-native';
-const hotelImg = require('../assets/hotel.png');
-const airImg = require('../assets/icons/air.png');
-const bedImg = require('../assets/icons/bed.png');
-const wifiImg = require('../assets/icons/wifi.png');
-const bathImg = require('../assets/icons/bath.png');
-const peopleImg = require('../assets/icons/people.png');
-const star = require('../assets/icons/star.png');
+import FAIcon from 'react-native-vector-icons/FontAwesome';
+import FA5Icon from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import AntIcon from 'react-native-vector-icons/AntDesign';
+import { IconLib } from '../../../utils/IconLib';
+const hotelImg = require('../../../assets/hotel.png');
+const airImg = require('../../../assets/icons/air.png');
+const bedImg = require('../../../assets/icons/bed.png');
+const wifiImg = require('../../../assets/icons/wifi.png');
+const bathImg = require('../../../assets/icons/bath.png');
+const peopleImg = require('../../../assets/icons/people.png');
+const star = require('../../../assets/icons/star.png');
 
 export default function Card(props) {
     const navigation = useNavigation();
 
-    const renderAir = () => {
-        if (props.air)
-            return (
-                <View style={styles.detail}>
-                    <Image source={airImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
-                </View>
-            )
-    }
-
-    const renderWifi = () => {
-        if (props.wifi)
-            return (
-                <View style={styles.detail}>
-                    <Image source={wifiImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
-                </View>
-            )
-    }
-
-    const renderBath = () => {
-        if (props.bath)
-            return (
-                <View style={styles.detail}>
-                    <Image source={bathImg} style={{ width: 14, height: 14, resizeMode: 'contain' }} />
-                </View>
-            )
-    }
-
     const renderStars = () => {
         const stars = [];
         for (let i = 0; i < props.stars; i++)
-            stars.push(<Image source={star} style={{ width: 10, height: 10, resizeMode: 'contain' }} />);
+            stars.push(<AntIcon name="star" key={i} style={[styles.icon, {fontSize: 12}]} />);
         
         return stars;
     }
@@ -58,16 +37,14 @@ export default function Card(props) {
                 </View>
                 <View style={styles.details}>
                     <View style={styles.simpleDetails}>
-                        {renderAir()}
-                        {renderWifi()}
-                        {renderBath()}
+                        { props.amenities.map((amenity) => IconLib[amenity]()) }
                     </View>
                     <View style={styles.detail}>
-                        <Image source={bedImg} style={{ width: 12, height: 12, resizeMode: 'contain' }} />
+                        <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
                         <Text style={styles.detailText}>{props.bed}</Text>
                     </View>
                     <View style={styles.detail}>
-                        <Image source={peopleImg} style={{ width: 12, height: 12, resizeMode: 'contain' }} />
+                        <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
                         <Text style={styles.detailText}>{props.people} people</Text>
                     </View>
                 </View>
@@ -90,14 +67,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        gap: '8px'
+        gap: '8px',
+        flexWrap: 'wrap'
     },
     box: {
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#3A3A3A',
-        height: '12rem',
+        minHeight: '12rem',
         borderRadius: 16,
     },
     imgBox: {
@@ -146,13 +124,12 @@ const styles = StyleSheet.create({
         fontSize: '0.75rem'
     },
     bottom: {
-        width: '90%',
+        width: '100%',
         height: '20%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        position: 'absolute',
-        bottom: 20
+        paddingTop: 12
     },
     priceBox: {
         alignItems: 'flex-end',
@@ -173,5 +150,7 @@ const styles = StyleSheet.create({
     perday: {
         color: '#ABABAB',
         fontFamily: 'Poppins'
-    }
+    },
+    icon: { fontSize: 16, color: '#FF881A' },
+    
 });

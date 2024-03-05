@@ -4,9 +4,10 @@ const logo = require('../assets/completedLogo.png');
 const facebook = require('../assets/facebook.png');
 const google = require('../assets/google.png');
 const background = require('../assets/background.png');
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorComponent from '../components/ErrorComponent';
-
+import { UserSlice } from '../redux/UserSlice';
+import { useDispatch } from "react-redux";
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState("")
@@ -23,26 +24,28 @@ export default function Login({ navigation }) {
     }
     const [error, setError] = useState({error: false, message: ''});
 
-    const login = async () => {
+    const { setUser } = UserSlice.actions;
+    const dispatch = useDispatch();
+
+    const onHandleLogin = async () => {
         try {
             const data = {
-                name : email,
-                password : pass
+                name: email,
+                password: pass
             }
             
             const response = await UserService.login(data);
             switch (response.status)
             {
                 case 200:
-                    setPass("");
-                    sessionStorage.setItem('jwt', response.data.token);
+                    dispatch(setUser(response.data));
                     navigation.navigate("main");
                     break;
                 case 400:
-                    setError({error: true, message: 'Usuário ou senha incorretos.'})
+                    setError({error: true, message: 'Usuário ou senha incorretos.'});
                     break;
                 case 500:
-                    setError({error: true, message: 'Erro interno.'})
+                    setError({error: true, message: 'Erro interno.'});
                     break;
 
             }
@@ -80,7 +83,7 @@ export default function Login({ navigation }) {
                     <ErrorComponent error={error.error} message={error.message} />
                     <TouchableOpacity
                         style={styles.btnContainer}
-                        onPress={() => login()}
+                        onPress={() => onHandleLogin()}
                     >
                         <Text 
                             style={{

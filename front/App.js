@@ -3,6 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
+import './global.css';
+import OfferDetails from './pages/OfferDetails/OfferDetails';
+import { Provider } from 'react-redux';
+import { Store } from './redux/Store';
+import MainPage from './pages/MainPage/MainPage';
 import MainPage from './pages/MainPage';
 import HotelRegister from './pages/HotelRegister'
 import './global.css';
