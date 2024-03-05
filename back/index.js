@@ -1,4 +1,6 @@
-const server = require('./server')()
+require('./server')()
+require('./config/stripe')
+
 const express = require("express")
 const routes = require('./routes')
 const cors = require("cors")
@@ -9,5 +11,5 @@ app.use(cors())
 app.use(express.json())
 routes(app)
 
-const port = process.env.PORT
+const port = process.env.PORT 
 app.listen(port, () => console.log(`🚀🚀🚀 http://localhost:${port}`))

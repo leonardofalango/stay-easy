@@ -50,6 +50,7 @@ class UserController
                 response : response
             })
         } catch (e) {
+            console.log(e)
             return res.status(500).send({
                 message : "Error",
                 debug : e.message,
@@ -124,6 +125,7 @@ class UserController
     }
 
     static login = async (req, res) => { 
+        console.log(req.data)
         try {
             const {
                 name,
@@ -134,9 +136,9 @@ class UserController
                 email : name,
                 password : crypto.MD5(password)
             })
-
+            
+            console.log(user)
             const jwt = await Jwt.create(user)
-
             if (user)
                 return res.status(200).send({
                     message : "Guti!",
@@ -149,7 +151,7 @@ class UserController
                 })
 
         } catch (e) {
-            console.log(e.message)
+            
 
             return res.status(500).send({
                 message : "Error",
@@ -178,6 +180,7 @@ class UserController
             })
 
         } catch (e) {
+            console.log(e)
             res.status(500).send({
                 message : "Error",
                 debug : e.message
