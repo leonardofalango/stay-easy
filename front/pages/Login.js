@@ -12,7 +12,6 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
-<<<<<<< HEAD
     const loginFacebook = async () => {
 
         const response = await UserService.loginFacebook();
@@ -22,9 +21,7 @@ export default function Login({ navigation }) {
             navigation.navigate("main")
         }
     }
-=======
     const [error, setError] = useState({error: false, message: ''});
->>>>>>> master
 
     const login = async () => {
         try {

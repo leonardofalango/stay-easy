@@ -1,4 +1,4 @@
-const { Jwt } = require("./jwtService")
+const { Jwt } = require("../services/jwtService")
 const Room = require("../model/Room")
 const crypto = require("crypto-js")
 
@@ -6,20 +6,22 @@ class RoomController {
     static getAll = async (req, res) => {
 
         try {
-            const rooms = await Room.find({})
+            const rooms = await Room.find()
 
             res.status(200).json(rooms)
         } catch (error) {
             res.status(500).json(error)
         }
     }
-    static getOne = async (req, res) => {
+    static getById = async (req, res) => {
         const { id } = req.params
+        console.log(id)
         try {
-            const room = await Room.findById(id)
+            const room = await Room.findById(req.prams.id)
             res.status(200).json(room)
 
         } catch (error) {
+            console.error(error)
             res.status(500).json(error)
         }
     }

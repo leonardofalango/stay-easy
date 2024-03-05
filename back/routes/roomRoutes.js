@@ -7,7 +7,7 @@ const router = express.Router()
 
 router
     .get("/room", RoomController.getAll)
-    .get("/room/:id", RoomController.getOne)
+    .get("/room/:id", RoomController.getById)
     .post("/room/add", RoomController.create)
     .post("/room/update/:id", RoomController.update)
     .post("/room/updateStatus/:id", RoomController.updateStatus)
