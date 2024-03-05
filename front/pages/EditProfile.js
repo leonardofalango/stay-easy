@@ -1,4 +1,4 @@
-import { Modal, View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import { Modal, View, StyleSheet, TouchableOpacity, Text, Image, TextInput } from 'react-native';
 import { useState } from 'react';
 import TopBar from '../components/TopBar';
 const userImage = require('../assets/caqui.png');
@@ -7,11 +7,29 @@ import Icon2 from 'react-native-vector-icons/FontAwesome';
 import DatePicker from 'react-native-modern-datepicker';
 
 export default function EditProfile({ navigation }) {
+    const { token } = useSelector((store) => store.user);
 
     const [open, setOpen] = useState(false)
     const [date, setDate] = useState('')
 
+    useEffect(() => {
+        const user = async() =>{
+            const u = (await userService.getByToken({token : token}))
+            setbirthdayUser(u.birthday)
+            setName(u.name)
+            setUsername(u.name)
+            setEmail(u.email)
+            setCpf(u.cpf)
+        }
+        user()
+    }, [])
+    const [loggedUser, setUser] = useState({})
+
     const [birthdayUser, setbirthdayUser] = useState('Select date')
+    const [name, setName] = useState('Kaiky Santos')
+    const [username, setUsername] = useState('@caqui')
+    const [email, setEmail] = useState('kaikysr0000@gmail.com')
+    const [cpf, setCpf] = useState('124.761.220-47')
 
     function handleOnPress () {
         setOpen(!open);
@@ -20,6 +38,22 @@ export default function EditProfile({ navigation }) {
     function handleChange (propDate) {
         setDate(propDate);
         setbirthdayUser(propDate);
+    }
+
+    function handleChangeName (propName) {
+        setName(propName);
+    }
+
+    function handleChangeUsername (propUsername) {
+        setUsername(propUsername);
+    }
+
+    function handleChangeEmail (propEmail) {
+        setEmail(propEmail);
+    }
+
+    function handleChangeCpf (propCpf) {
+        setCpf(propCpf);
     }
 
     return (
@@ -35,23 +69,24 @@ export default function EditProfile({ navigation }) {
             </View>
             <View style={styles.userIDs}>
                 <View style={styles.name}>
-                    <Text style={{ fontSize: 25, fontFamily: 'Poppins', color: '#EEEEEE', fontWeight: 600 }}>Kaiky Santos</Text>
+                    <TextInput style={{ textAlign: 'center', fontSize: 25, fontFamily: 'Poppins', color: '#EEEEEE', fontWeight: 600 }} 
+                    onChange={(e) => setName(e.target.value)} value={name}/>
                 </View>
                 <View style={styles.username}>
-                    <Text style={styles.grayText}>@caqui</Text> 
+                    <TextInput style={{fontSize: 18, fontFamily: 'Poppins', color: '#ABABAB', fontWeight: 600, textAlign: 'center' }} onChange={(e) => setUsername(e.target.value)} value={username}/> 
                 </View>
             </View>
             <View style={styles.userData}>
                 <View style={styles.email}>
                     <Text style={styles.grayText}>EMAIL ADDRESS</Text>
                     <View style={styles.inputEmail}>
-                        <Text style={styles.whiteText}>kaikysr0000@gmail.com</Text>
+                        <TextInput style={styles.whiteText} onChange={(e) => setEmail(e.target.value)} value={email}/>
                     </View>
                 </View>
                 <View style={styles.cpf}>
                     <Text style={styles.grayText}>CPF</Text>
                     <View style={styles.inputCPF}>
-                        <Text style={styles.whiteText}>144.785.934-00</Text>
+                        <TextInput style={styles.whiteText} onChange={(e) => setCpf(e.target.value)} value={cpf}/>
                     </View>
                 </View>
                 <View style={styles.birthday}>
@@ -83,8 +118,8 @@ export default function EditProfile({ navigation }) {
                 </View>
             </View>
             <View style={styles.logout}>
-                <TouchableOpacity style={{}}>
-                    <Text>Log Out</Text>
+                <TouchableOpacity style={styles.buttonLogout}>
+                    <Text style={{color: 'red', fontFamily: 'Poppins', fontSize: 18,  fontWeight: 600}}>Log Out</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -188,4 +223,27 @@ const styles = StyleSheet.create({
     birthday: {
         gap: 10
     },
+    logout: {
+        width: '85%',
+        marginTop: 10,
+        height: 20
+    },
+    buttonLogout: {
+        width: '100%', 
+        borderRadius: 15, 
+        padding: 15, 
+        borderWidth: 2, 
+        borderColor: "red", 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '15%'
+        
+    },
+    name: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    }
 });

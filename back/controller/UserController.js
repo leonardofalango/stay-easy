@@ -190,7 +190,7 @@ class UserController
     }
 
     static verifyToken = async (req, res) => {
-        
+        return Jwt.verify(req.body.token)
     }
 }
 

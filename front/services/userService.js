@@ -99,6 +99,15 @@ class UserService
             console.log(e.message);
         }
     }
+
+    static getByToken = async (data) => {
+        try {
+            const res = axios.post(host + 'user/getByToken', data)
+            return res.data
+        } catch (e) {
+            return res.status(500)
+        }
+    }
 }
 
 export { UserService }
