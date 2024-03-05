@@ -21,9 +21,10 @@ class RoomService {
 
     static getById = async (id) => {
         try {
+            console.log(id);
             const response = await axios.get(this.host + `/?id=${id}`)
                 .then((res) => {
-                    return res.data;
+                    return res.data[0];
                 })
                 .catch((err) => { return { status: err.response.status } });
 

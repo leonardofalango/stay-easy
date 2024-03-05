@@ -14,38 +14,37 @@ const bathImg = require('../../../assets/icons/bath.png');
 const peopleImg = require('../../../assets/icons/people.png');
 const star = require('../../../assets/icons/star.png');
 
-export default function Card(props) {
+export default function Card({ data }) {
     const navigation = useNavigation();
+    console.log()
 
     const renderStars = () => {
         const stars = [];
-        for (let i = 0; i < props.stars; i++)
+        for (let i = 0; i < data.stars; i++)
             stars.push(<AntIcon name="star" key={i} style={[styles.icon, {fontSize: 12}]} />);
         
         return stars;
     }
 
     return (
-        <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('offer', props.id)}>
+        <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('offer', data._id)}>
             <View style={styles.imgBox}>
                 <Image source={hotelImg} style={{ width: '100%', height: '100%', resizeMode: 'cover', borderBottomLeftRadius: 16, borderTopLeftRadius: 16 }} />
             </View>
             <View style={styles.infoBox}>
                 <View style={styles.info}>
-                    <Text style={styles.name}>{props.hotel}</Text>
-                    <Text style={styles.destination}>{props.destination}</Text>
+                    <Text style={styles.name}>{data.name}</Text>
+                    <Text style={styles.destination}>{data.destination}</Text>
                 </View>
                 <View style={styles.details}>
                     <View style={styles.simpleDetails}>
-                        { props.amenities.map((amenity) => IconLib[amenity]()) }
+                        { data.amenities.map((amenity) => IconLib[amenity]()) }
                     </View>
                     <View style={styles.detail}>
                         <FA5Icon name="bed" style={[styles.icon, {fontSize: 12}]} />
-                        <Text style={styles.detailText}>{props.bed}</Text>
-                    </View>
-                    <View style={styles.detail}>
+                        <Text style={styles.detailText}>{data.bed}</Text>
                         <MaterialIcon name="people-alt" style={[styles.icon, {fontSize: 15}]} />
-                        <Text style={styles.detailText}>{props.people} people</Text>
+                        <Text style={styles.detailText}>{data.people}</Text>
                     </View>
                 </View>
                 <View style={styles.bottom}>
@@ -53,7 +52,7 @@ export default function Card(props) {
                         {renderStars()}
                     </View>
                     <View style={styles.priceBox}>
-                        <Text style={styles.price}>US$ {props.price}</Text>
+                        <Text style={styles.price}>US$ {data.price.toFixed(2)}</Text>
                         <Text style={styles.perday}>per day</Text>
                     </View>
                 </View>
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 12
+        paddingTop: 24
     },
     priceBox: {
         alignItems: 'flex-end',

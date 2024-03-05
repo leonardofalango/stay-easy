@@ -30,6 +30,7 @@ export default function TicketPicker({ selectedTicket, setSelectedTicket }) {
             <View style={styles.ticketsContainer}>
                 {tickets.map((ticket) =>
                     <TouchableOpacity 
+                        key={ticket.name}
                         style={[styles.ticket, (selectedTicket.name == ticket.name) ? { backgroundColor: '#000' } : '']} 
                         onPress={() => setSelectedTicket(ticket)}
                     >
